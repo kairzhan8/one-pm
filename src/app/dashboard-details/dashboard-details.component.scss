@@ -1,0 +1,13 @@
+.pageTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  h1 {
+    font-weight: lighter;
+    font-size: 1.5rem;
+  }
+  app-dashboard-details-table {
+    width: 100%;
+  }
+}

@@ -1,0 +1,84 @@
+<ul>
+    <li >
+      <a (click)="setTimeScale('halfyear')">Полугодия</a>
+    </li>
+    <li>
+      <a (click)="setTimeScale('quarter')">Кварталы</a>
+    </li>
+    <li>
+      <a (click)="setTimeScale('month')">Месяцы</a>
+    </li>
+    <li>
+      <a (click)="setTimeScale('week')">Недели</a>
+    </li>
+  </ul>
+<div class="table">
+  <table>
+    <tr>
+      <th class="hidden-th"></th>
+      <th class="hidden-th"></th>
+      <th class="hidden-th"></th>
+      <th class="hidden-th"></th>
+      <th class="hidden-th"></th>
+      <th class="hidden-th"></th>
+      <ng-container *ngFor="let month of months">
+        <th colspan="4" style="text-align: center" [ngClass]="{'hiddenMonths': showWeek}">{{ month }}</th>
+      </ng-container>
+    </tr>
+    <tr>
+      <th>№</th>
+      <th>Проект</th>
+      <th>Ответственный</th>
+      <th>Подпроект</th>
+      <th>Описание</th>
+      <th>Платформа</th>
+      <ng-container *ngFor="let halfyear of halfyears">
+        <th [ngClass]="{'showHalfyear': showHalfyear}">{{ halfyear }}</th>
+      </ng-container>
+      <ng-container *ngFor="let quarter of quarters">
+        <th [ngClass]="{'showQuarter': showQuarter}">{{ quarter }}</th>
+      </ng-container>
+      <ng-container *ngFor="let month of months">
+        <th [ngClass]="{'showMonth': showMonth}">{{ month }}</th>
+      </ng-container>
+      <ng-container *ngFor="let day of days">
+        <th [ngClass]="{'showWeek': showWeek}">{{ day }}</th>
+      </ng-container>
+    </tr>
+    <ng-container *ngFor="let project of projects">
+      <tr>
+        <td [attr.rowspan]="getPlatforms() * project.subprojects.length + 4">{{ project.id }}</td>
+        <td [attr.rowspan]="getPlatforms() * project.subprojects.length + 4">{{ project.name }}</td>
+        <td [attr.rowspan]="getPlatforms() * project.subprojects.length + 4">{{ project.responsible.fullName }}</td>
+      </tr>
+      <ng-container *ngFor="let subPr of project.subprojects">
+        <tr >
+          <td [attr.rowspan]="getPlatforms() + 1">{{ subPr.name }}</td>
+          <td [attr.rowspan]="getPlatforms() + 1">{{ subPr.description }}</td>
+        </tr>
+        <ng-container *ngFor="let item of subPr.subprojectstage">
+          <tr *ngIf="item.projectStage == stage">
+            <td *ngIf="item.projectStage == 'design' || item.projectStage == 'frontend'">{{ item.projectPlatform }}</td>
+            <td *ngIf="item.projectStage == 'businessAnalysis' || item.projectStage == 'backend' || item.projectStage == 'QA'"></td>
+            <ng-container *ngIf="!showHalfyear">
+              <td *ngFor="let halfyear of halfyears" >
+                <img src="/src/assets/project-icons/startFlag.png" alt="">
+                <span>2</span>
+                <span>3</span>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="!showQuarter" >
+              <td *ngFor="let quarter of quarters"></td>
+            </ng-container>
+            <ng-container *ngIf="!showMonth">
+              <td *ngFor="let month of months" ></td>
+            </ng-container>
+            <ng-container *ngIf="!showWeek">
+              <td *ngFor="let day of days" ></td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </ng-container>
+  </ng-container>
+</table>
+</div>

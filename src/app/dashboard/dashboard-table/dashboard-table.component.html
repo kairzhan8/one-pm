@@ -1,0 +1,97 @@
+<div class="table">
+  <div class="foldin" (click)="folding()"><span>{{ clickedFolding }}</span></div>
+  <table>
+    <tr>
+      <th>Проект</th>
+      <th>Ответственный</th>
+      <th>Подпроекты</th>
+      <!--<th>-->
+          <!--<a [routerLink]="['/dashboard/business']" routerLinkActive="router-link-active" >{{ stage.businessAnalysis }}</a>-->
+      <!--</th>-->
+      <!--<th colspan='7'>-->
+        <!--<a [routerLink]="['/dashboard/design']" routerLinkActive="router-link-active" >{{ stage.design }}</a>-->
+      <!--</th>-->
+      <!--<th>-->
+          <!--<a [routerLink]="['/dashboard/backend']" routerLinkActive="router-link-active" >{{ stage.backend }}</a>-->
+      <!--</th>-->
+      <!--<th colspan='7'>-->
+          <!--<a [routerLink]="['/dashboard/frontend']" routerLinkActive="router-link-active" >{{ stage.frontend }}</a>-->
+      <!--</th>-->
+      <!--<th>-->
+          <!--<a [routerLink]="['/dashboard/qa']" routerLinkActive="router-link-active" >{{ stage.QA }}</a>-->
+      <!--</th>-->
+      <ng-container *ngFor="let stage of stages, let st of stagess" >
+        <th  [ngClass]="{'hideStages': stagesIsHidden}" *ngIf="stage.key == 'design' || stage.key == 'frontend'; else otherStage" [attr.colSpan]="getColSpan(stage.key)" class="fr">
+            <span (click)="hide(stage.key)" class="folding" *ngIf="stage.key == 'design'">{{ clickedDesign }}</span>
+            <span (click)="hide(stage.key)" class="folding" *ngIf="stage.key == 'frontend'">{{ clickedFront }}</span>
+            <a [routerLink]="[stage.key]" (click)="getStagePlatforms()">
+              {{ stage.value }}
+            </a>
+        </th>
+        <ng-template #otherStage>
+          <th [ngClass]="{'hideStages': stagesIsHidden}">
+            <a [routerLink]="['/dashboard/', stage.key]">
+              {{ stage.value }}
+            </a>
+          </th>
+        </ng-template>
+      </ng-container>
+      <th>Start Date</th>
+      <th>Due Date</th>
+      <th>Комментарии</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td [ngClass]="{'hideStages': stagesIsHidden}"></td>
+      <td *ngFor = "let platform of platforms; index as i" [ngClass]="{'hideDesign': i>=platforms.length - 2 && designIsHidden, 'hideStages': stagesIsHidden}"> {{ platform }} </td>
+      <td [ngClass]="{'hideStages': stagesIsHidden}"></td>
+      <td *ngFor = "let platform of platforms; index as i" [ngClass]="{'hideFront': i>=platforms.length - 2 && frontIsHidden, 'hideStages': stagesIsHidden}" > {{ platform }} </td>
+      <td [ngClass]="{'hideStages': stagesIsHidden}"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <ng-container *ngFor="let project of projects">
+      <tr>
+          <td [attr.rowspan]="project.subprojects.length + 1">{{ project.name }}</td>
+          <td [attr.rowspan]="project.subprojects.length + 1">{{ project.responsible.fullName }}</td>
+      </tr>
+      <tr *ngFor="let subproject of project.subprojects; index as i"  [ngClass]="{'even':!(i%2), 'odd':(i%2)}">
+        <td>
+          {{ subproject.name }}
+        </td>
+        <ng-container *ngFor="let item of subproject.subprojectstage as stages; index as i">
+
+          <!-- <td *ngIf="item.projectStage == 'backend' ||
+            item.projectStage == 'businessAnalysis' ||
+            item.projectStage == 'QA'; else other">
+            {{ item.usDone }}/{{ item.usTotal }}
+          </td>
+          <ng-template #other> -->
+            <td *ngIf="item.usDone; else empty" [ngClass]="{'hideDesign': item.projectStage == 'design' && i > getStageCount('design') - 2 && designIsHidden,
+                                                            'hideFront': item.projectStage == 'frontend' && i > getStageCount('design') + getStageCount('frontend') - 1 && frontIsHidden, 'hideStages': stagesIsHidden}">
+              <img [attr.src]="project.avatar" alt=""><br>
+              {{ item.usDone }}/{{ item.usTotal }}
+            </td>
+            <ng-template #empty>
+              <td [ngClass]="{'hideShow': i>=stages.length - 2,'hideStages': stagesIsHidden}"></td>
+            </ng-template>
+            <!-- </ng-template> -->
+          </ng-container>
+          <td>
+              {{ subproject.dueDate }}
+            </td>
+            <td>
+              {{ subproject.dueDate }}
+            </td>
+            <td>
+              {{ subproject.comment }}
+            </td>
+      </tr>
+    </ng-container>
+
+  </table>
+</div>
+

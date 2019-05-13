@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
+.main-content {
+  flex: 1 0;
+}
+
+app-dashboard-details {
+  width: 100%;
+}

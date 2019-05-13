@@ -1,0 +1,75 @@
+<table class="projects-list-table">
+  <thead>
+    <tr>
+      <th>
+        <div class="header-text">
+          Логотип
+        </div>
+      </th>
+      <th>
+        <div class="header-text">
+          Название
+        </div>
+      </th>
+      <th>
+        <div class="header-text">
+          Описание
+        </div>
+      </th>
+      <th>
+        <div class="header-text">
+          Ответственный
+        </div>
+      </th>
+      <th>
+        <div class="header-text">
+          Аватар
+        </div>
+      </th>
+      <th>
+        <div class="header-text">
+          Подпроекты
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- load data from server -->
+    <tr *ngFor="let project of projects" (click)="projectPage(project.id)">
+      <td>
+        <div class="project-logo">
+          <img [src]="project.logo" alt="Логотип">
+        </div>
+      </td>
+      <td>
+        <div class="data-text">
+          {{ project.name }}
+        </div>
+      </td>
+      <td>
+        <div class="data-text">
+          {{ project.description }}
+        </div>
+      </td>
+      <td>
+        <div class="data-text">
+          {{ project.responsible.fullName }}
+        </div>
+      </td>
+      <td>
+        <div class="project-avatar">
+          <img [src]="project.avatar" alt="Аватар">
+        </div>
+      </td>
+      <td>
+        <div class="subprojects-list">
+          <ng-container *ngFor="let subp of getSubps(project.id)">
+            <div class="text subproject-name">
+              {{ subp.name }}
+            </div>
+          </ng-container>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,37 @@
+.legends {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: 20%;
+
+  .legend-item {
+    flex: 1 50%;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 100px;
+
+    p {
+      margin-left: 10px;
+    }
+
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      margin-left: 20px;
+
+      &.danger {
+        background-color: var(--status-color-danger);
+      }
+      &.muted {
+        background-color: var(--status-color-muted);
+      }
+      &.warning {
+        background-color: var(--status-color-warning);
+      }
+      &.success {
+        background-color: var(--status-color-success);
+      }
+    }
+  }
+}
+

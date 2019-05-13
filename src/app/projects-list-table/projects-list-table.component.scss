@@ -1,0 +1,50 @@
+table {
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid var(--frame-color);
+  background-color: var(--header-background-color);
+  width: 100%;
+
+  th {
+    background-color: var(--table-header-color);
+    font-weight: 600;
+    padding: 0.9em 0;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--frame-color);
+    font-size: var(--table-data-font-size);
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--table-row-color);
+    }
+
+    .subprojects-list {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      padding: 5px;
+      padding-bottom: 0px;
+
+      .subproject-name {
+        border: 1px solid var(--label-border-color);
+        border-radius: 4px;
+        background-color: var(--label-color);
+        padding: 1px 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .project-logo, .project-avatar {
+      margin: 5px;
+
+      img {
+        margin-top: 4px;
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+}

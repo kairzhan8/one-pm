@@ -1,0 +1,90 @@
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  padding: 0;
+  background-color: #ede4e7;
+  width: 22rem;
+  height: 2.5rem;
+  align-items: center;
+  position: relative;
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--status-color-danger);
+    font-weight: 500;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+.table{
+  overflow-x: auto;
+  // width: 100%;
+
+
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #ffffff;
+  width: 90%;
+
+  .hidden-th {
+    border-block-start-style: hidden;
+    border-inline-end-style: hidden;
+    border-inline-start-style: hidden;
+    background-color: #efeff2;
+
+    &:nth-child(6){
+      border-inline-end-style: inherit;
+    }
+  }
+
+
+  th, td {
+    border: 1px solid #DBDBDB;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    padding: 0 2rem;
+  }
+  td {
+    font-weight: 400;
+    vertical-align: top;
+  }
+
+  .even{
+    background-color: #fafafa;
+  }
+
+  .odd{
+    background-color: #ffffff;
+  }
+
+  .showHalfyear {
+    display: none;
+  }
+  .showQuarter {
+    display: none;
+  }
+  .showMonth {
+    display: none;
+  }
+  .showWeek {
+    display: none;
+  }
+  .hiddenMonths {
+    display: none;
+  }
+
+}
+.halfyearPressed {
+  background-color: blue;
+}

@@ -1,0 +1,9 @@
+<div class="projects-list">
+  <div class="top">
+    <div class="projects-no">
+      Проекты ({{ projects.length }})
+    </div>
+    <app-search-bar></app-search-bar>
+  </div>
+  <app-projects-list-table [projects]="projects" [subprojects]="subprojects"></app-projects-list-table>
+</div>

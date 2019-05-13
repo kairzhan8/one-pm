@@ -1,0 +1,48 @@
+header {
+  flex: 0 0 60px;
+  background-color: var(--header-background-color);
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      flex: 1 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    nav {
+      flex: 3 0;
+
+      ul {
+        display: flex;
+        flex-flow: row nowrap;
+        list-style: none;
+        justify-content: flex-start;
+        align-items: center;
+
+        li {
+          margin: 0 15px;
+          font-weight: 500;
+
+          a {
+            color: var(--link-text-color);
+            cursor: pointer;
+            text-decoration: none;
+          }
+        }
+
+      }
+    }
+
+    .profile {
+      flex: 1 0;
+    }
+  }
+}
